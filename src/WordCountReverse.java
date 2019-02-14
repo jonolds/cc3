@@ -17,9 +17,10 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
 public class WordCountReverse {
-	public static class TokenizerMapperReverse extends Mapper<Object, Text, Text, IntWritable>{
+	
+	public static class TokenizerMapperReverse extends Mapper<Object, Text, NewText, IntWritable>{
 		private final static IntWritable one = new IntWritable(1);
-		private Text word = new Text();
+		private NewText word = new NewText();
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 			StringTokenizer itr = new StringTokenizer(value.toString());
 			while (itr.hasMoreTokens()) {
@@ -29,9 +30,9 @@ public class WordCountReverse {
 		}
 	}
 	
-	public static class IntSumReducerReverse extends Reducer<Text,IntWritable,Text,IntWritable> {
+	public static class IntSumReducerReverse extends Reducer<NewText,IntWritable,NewText,IntWritable> {
 		private IntWritable result = new IntWritable();
-		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+		public void reduce(NewText key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 			int sum = 0;
 			for (IntWritable val : values) {
 				sum += val.get();
@@ -57,7 +58,7 @@ public class WordCountReverse {
 		job.setMapperClass(TokenizerMapperReverse.class);
 		job.setCombinerClass(IntSumReducerReverse.class);
 		job.setReducerClass(IntSumReducerReverse.class);
-		job.setOutputKeyClass(Text.class);
+		job.setOutputKeyClass(NewText.class);
 		job.setOutputValueClass(IntWritable.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(outfolder));

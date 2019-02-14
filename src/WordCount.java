@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.StringTokenizer;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -14,63 +15,55 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class WordCount {
-	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>{
+
+	public static class TokenizerMapper extends Mapper<Object, Text, NewText, IntWritable> {
 		private final static IntWritable one = new IntWritable(1);
-		private Text word = new Text();
+		
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+			
 			StringTokenizer itr = new StringTokenizer(value.toString());
-			while (itr.hasMoreTokens()) {
-				word.set(itr.nextToken());
-				context.write(word, one);
-			}
+			while (itr.hasMoreTokens())
+				context.write(new NewText(itr.nextToken()), one);
 		}
 	}
 	
-	public static class IntSumReducer extends Reducer<Text,IntWritable,Text,IntWritable> {
+	public static class IntSumReducer extends Reducer<NewText, IntWritable, NewText, IntWritable> {
 		private IntWritable result = new IntWritable();
-		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+		
+		public void reduce(NewText key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
 			int sum = 0;
-			for (IntWritable val : values) {
-				sum += val.get();
-			}
+			for (IntWritable val : values)
+				sum += Integer.parseInt(val.toString());
 			result.set(sum);
 			context.write(key, result);
 		}
 	}
 	
 	public static void main(String[] args) throws Exception {
-		Job job = initializeJob(args, "wordcount");
-		int ret0 = job.waitForCompletion(true) ? 0 : 1;
-		job = WordCountReverse.initializeJob(args, "wcRev");
-		int ret1 = job.waitForCompletion(true) ? 0 : 1;
-		
-		
-		System.out.println(ret0&ret1);
-		System.exit(ret0&ret1);
-	}
-	
-	public static Job initializeJob(String[] args, String jobname) throws IOException {
 		Configuration conf = new Configuration();
+		Logger log = Logger.getLogger(WordCount.class);
+		log.setLevel(Level.WARN);
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		if (otherArgs.length != 2) {
 			System.err.println("Usage: wordcount <in> <out>");
 			System.exit(2);
 		}
-		String outfolder = "output_"+ jobname;
-		if(new File(outfolder).exists())
-			Files.walk(Paths.get(outfolder)).sorted(Comparator.reverseOrder()).forEach(x->x.toFile().delete());
+		if(new File("output").exists())
+			Files.walk(Paths.get(args[1])).sorted(Comparator.reverseOrder()).forEach(x->x.toFile().delete());
 		
-		Job job = Job.getInstance(conf, jobname);
+		Job job = Job.getInstance(conf, "NewT ext");
 		job.setJarByClass(WordCount.class);
 		job.setMapperClass(TokenizerMapper.class);
 		job.setCombinerClass(IntSumReducer.class);
 		job.setReducerClass(IntSumReducer.class);
-		job.setOutputKeyClass(Text.class);
+		job.setOutputKeyClass(NewText.class);
 		job.setOutputValueClass(IntWritable.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
-		FileOutputFormat.setOutputPath(job, new Path(outfolder));
-		return job;
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 }
