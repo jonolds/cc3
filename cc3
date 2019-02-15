@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm pa3_olds.tar
 javac src/main/java/WordCount.java src/main/java/NewText.java -Xlint:deprecation -d ./
 jar -cvf WordCountReverse.jar ./*.class
 rm ./*.class
