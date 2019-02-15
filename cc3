@@ -8,5 +8,5 @@ cat ./output/part-r-00000
 cp src/main/java/*.java .
 tar -cvf pa3_olds.tar input output ./*.java answer.txt
 rm ./*.java
-
+rm WordCountReverse.jar
 
