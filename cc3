@@ -1,6 +1,6 @@
 #!/bin/bash
 
-javac src/main/WordCount.java src/main/java/NewText.java -Xlint:deprecation -d ./target/classes
+javac src/main/java/WordCount.java src/main/java/NewText.java -Xlint:deprecation -d ./target/classes
 jar -cvf WordCountReverse.jar target/classes/*.class 
 #rm -R output
 hadoop jar WordCount.jar WordCount input output
