@@ -1,11 +1,11 @@
 #!/bin/bash
 
 javac src/main/java/WordCount.java src/main/java/NewText.java -Xlint:deprecation -d ./
-#cp src/classes/*.class .
+#cp target/classes/*.class .
 jar -cvf WordCountReverse.jar ./*.class
 #rm ./*.class
 #rm -R output
-hadoop jar WordCountReverse.jar WordCount input output
-tar -cvf pa3_olds.tar input output src/main/java/WordCount.java src/main/java/NewText.java answer.txt
+#hadoop jar WordCountReverse.jar WordCount input output
+#tar -cvf pa3_olds.tar input output src/main/java/WordCount.java src/main/java/NewText.java answer.txt
 #cat ./output/part-r-00000
 
