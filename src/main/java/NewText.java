@@ -21,7 +21,7 @@ public class NewText implements Writable, WritableComparable<NewText>{
 	public void write(DataOutput out) throws IOException { value.write(out); }
 	public void readFields(DataInput in) throws IOException { value.readFields(in); }
 
-	public String toString() { return "{txt=[" + value + "]"; }
+	public String toString() { return value.toString(); }
 
 	public int compareTo(NewText o) { return -value.compareTo(o.getWord()); }
 	public boolean equals(Object o) {

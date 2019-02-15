@@ -1,11 +1,9 @@
 #!/bin/bash
-cp src/WordCount.java .
-javac WordCount.java -Xlint:deprecation -d ./target/classes
-cp target/classes/WordCount*.class .
-jar -cvf WordCount.jar WordCount*.class 
-rm ./WordCount*.class
+
+javac src/main/WordCount.java src/main/java/NewText.java -Xlint:deprecation -d ./target/classes
+jar -cvf WordCountReverse.jar target/classes/*.class 
 #rm -R output
 hadoop jar WordCount.jar WordCount input output
-tar -cvf pa3_olds.tar input output WordCount.java NewText.java answer.txt
+#tar -cvf pa3_olds.tar input output WordCount.java NewText.java answer.txt
 cat ./output/part-r-00000
 
