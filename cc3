@@ -1,5 +1,4 @@
 #!/bin/bash
-
 rm pa3_olds.tar
 javac src/main/java/*.java -Xlint:deprecation -d ./
 jar -cvf WordCountReverse.jar ./*.class
@@ -10,4 +9,3 @@ cp src/main/java/*.java .
 tar -cvf pa3_olds.tar input output *.java answer.txt
 rm ./*.java
 rm WordCountReverse.jar
-
