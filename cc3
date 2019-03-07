@@ -16,7 +16,7 @@ cp src/main/java/*.java answer.txt -r input ./$tarname
 # javac *.java -Xlint:deprecation -d ./
 javac $tarname/*.java -Xlint:deprecation -d $tarname
 # jar -cvf TestJar.jar ./*.class
-jar -cvf $tarname/TestJar.jar *.class
+
 # rm ./*.class
 # rm $tarname/*.class
 # hadoop jar TestJar.jar $mainclass input output
@@ -25,6 +25,7 @@ jar -cvf $tarname/TestJar.jar *.class
 # CREATE TAR / DELETE .java / DELETE jar
 # tar -cvf $tarname.tar input output *.java answer.txt
 cd $tarname
+jar -cvf $tarname/TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 # rm TestJar.jar *.class
