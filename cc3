@@ -2,35 +2,30 @@
 tarname="pa3_olds"
 mainclass="WordCount"
 
-
+# DELETE TAR and STAGING directory if present
 rm $tarname.tar
+mkdir STAGING
 # rm -R $tarname
 # COPY EVERYTHING TO TOP LEVEL
 
 
-mkdir $tarname
-cp src/main/java/*.java answer.txt -r input ./$tarname
-# cp src/main/java/*.java ./$tarname
+mkdir STAGING
+cp src/main/java/*.java answer.txt -r input STAGING
 
 # TEST - compile / put in jar / delete .class / run
-# javac *.java -Xlint:deprecation -d ./
-javac $tarname/*.java -Xlint:deprecation -d $tarname
-# jar -cvf TestJar.jar ./*.class
 
-# rm ./*.class
-# rm $tarname/*.class
-# hadoop jar TestJar.jar $mainclass input output
-# cat ./output/part-r-00000
+
 
 # CREATE TAR / DELETE .java / DELETE jar
 # tar -cvf $tarname.tar input output *.java answer.txt
-cd $tarname
+cd STAGING
+javac *.java -Xlint:deprecation -d
 jar -cvf TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 # rm TestJar.jar *.class
 tar -cvf ../$tarname.tar *.java answer.txt input output
 cd ..
-rm -R $tarname
+rm -R STAGING
 # rm $tarname/*.jarf
 # rm TestJar.jar
