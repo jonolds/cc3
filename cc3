@@ -9,7 +9,7 @@ rm -R $tarname
 
 
 mkdir $tarname
-cp src/main/java/*.java answer.txt input ./$tarname
+cp src/main/java/*.java answer.txt -r input ./$tarname
 # cp src/main/java/*.java ./$tarname
 
 # TEST - compile / put in jar / delete .class / run
