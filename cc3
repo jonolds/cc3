@@ -19,7 +19,7 @@ cp src/main/java/*.java answer.txt -r input STAGING
 # CREATE TAR / DELETE .java / DELETE jar
 # tar -cvf $tarname.tar input output *.java answer.txt
 cd STAGING
-javac *.java -Xlint:deprecation -d
+javac *.java -Xlint:deprecation -d .
 jar -cvf TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
