@@ -6,6 +6,8 @@ mainclass="WordCount"
 rm $tarname.tar
 # COPY EVERYTHING TO TOP LEVEL
 cp src/main/java/*.java .
+
+mkdir $tarname
 cp src/main/java/*.java ./$tarname
 
 # TEST - compile / put in jar / delete .class / run
