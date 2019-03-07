@@ -2,7 +2,7 @@
 tarname="pa3_olds.tar"
 mainclass="WordCount"
 
-rm $tarname
+rm $tarnamels -
 
 # COPY EVERYTHING TO TOP LEVEL
 cp src/main/java/*.java .
@@ -17,4 +17,4 @@ hadoop jar TestJar.jar $mainclass input output
 # CREATE TAR / DELETE .java / DELETE jar
 tar -cvf $tarname input output *.java answer.txt
 rm ./*.java
-# rm TestJar.jar
+rm TestJar.jar
