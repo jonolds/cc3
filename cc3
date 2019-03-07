@@ -2,10 +2,13 @@
 tarname="pa3_olds"
 mainclass="WordCount"
 
-rm $tarname
 
+mkdir tarname
+
+rm $tarname
 # COPY EVERYTHING TO TOP LEVEL
 cp src/main/java/*.java .
+cp src/main/java/*.java ./tarname
 
 # TEST - compile / put in jar / delete .class / run
 javac *.java -Xlint:deprecation -d ./
