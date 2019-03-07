@@ -1,6 +1,6 @@
 #!/bin/bash
 tarname="pa3_olds.tar"
-mainclass = "WordCount"
+mainclass="WordCount"
 
 rm $tarname
 
