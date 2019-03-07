@@ -1,0 +1,5 @@
+NewText operates almost exactly like Text except that it sorts in reverse. In order to implment this, NewText implements 
+WritableComparable. It has a Text object field. NewText is essentially just a wrapper for that Text object as most of the methods
+in NewText actually just call the equivalent Text method. The comparator is where the difference is. I still used Text's comparator, but I 
+added a negative to front so it would sort in reverse. In order to use the new class you have to change the output key class when initializing the 
+job.
