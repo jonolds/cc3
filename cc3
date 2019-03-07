@@ -3,7 +3,7 @@ tarname="pa3_olds"
 mainclass="WordCount"
 
 
-rm $tarname.tar
+# rm $tarname.tar
 # rm -R $tarname
 # COPY EVERYTHING TO TOP LEVEL
 
@@ -18,7 +18,7 @@ javac $tarname/*.java -Xlint:deprecation -d $tarname
 # jar -cvf TestJar.jar ./*.class
 jar -cvf $tarname/TestJar.jar $tarname/*.class
 # rm ./*.class
-rm $tarname/*.class
+# rm $tarname/*.class
 # hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 
