@@ -4,7 +4,7 @@ mainclass="WordCount"
 
 
 rm $tarname.tar
-rm -R $tarname
+# rm -R $tarname
 # COPY EVERYTHING TO TOP LEVEL
 
 
@@ -27,9 +27,9 @@ rm $tarname/*.class
 cd $tarname
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
-rm TestJar.jar *.class
+# rm TestJar.jar *.class
 
-tar -cvf ../$tarname.tar *
+tar -cvf ../$tarname.tar *.java answer.txt input output
 cd ..
 # rm ./*.java
 # rm $tarname/*.jarf
