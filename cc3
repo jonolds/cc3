@@ -1,14 +1,21 @@
 #!/bin/bash
 tarname="pa3_olds.tar"
+mainclass = "WordCount"
 
 rm $tarname
+
+# COPY EVERYTHING TO TOP LEVEL
 cp src/main/java/*.java .
+
+# TEST - compile / put in jar / delete .class / run
 javac *.java -Xlint:deprecation -d ./
 jar -cvf WordCountReverse.jar ./*.class
+jar -cvf {$mainclass}.jar ./*.class
 rm ./*.class
-hadoop jar WordCountReverse.jar WordCount input output
-# cat ./output/part-r-00000
-# cp src/main/java/*.java .
-# tar -cvf $tarname input output *.java answer.txt
-# rm ./*.java
+hadoop jar WordCountReverse.jar $mainclass input output
+cat ./output/part-r-00000
+
+# CREATE TAR / DELETE .java / DELETE jar
+tar -cvf $tarname input output *.java answer.txt
+rm ./*.java
 # rm WordCountReverse.jar
