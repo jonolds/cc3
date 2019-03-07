@@ -9,13 +9,12 @@ cp src/main/java/*.java .
 
 # TEST - compile / put in jar / delete .class / run
 javac *.java -Xlint:deprecation -d ./
-jar -cvf WordCountReverse.jar ./*.class
-jar -cvf $mainclass.jar ./*.class
+jar -cvf TestJar.jar ./*.class
 rm ./*.class
-hadoop jar WordCountReverse.jar $mainclass input output
+hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 
 # CREATE TAR / DELETE .java / DELETE jar
 tar -cvf $tarname input output *.java answer.txt
 rm ./*.java
-# rm WordCountReverse.jar
+# rm TestJar.jar
