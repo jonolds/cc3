@@ -6,19 +6,25 @@ mainclass="WordCount"
 rm $tarname.tar
 rm -R $tarname
 # COPY EVERYTHING TO TOP LEVEL
-cp src/main/java/*.java answer.txt .
+
 
 mkdir $tarname
-cp src/main/java/*.java ./$tarname
+cp src/main/java/*.java answer.txt input ./$tarname
+# cp src/main/java/*.java ./$tarname
 
 # TEST - compile / put in jar / delete .class / run
-javac *.java -Xlint:deprecation -d ./
-jar -cvf TestJar.jar ./*.class
-rm ./*.class
+# javac *.java -Xlint:deprecation -d ./
+javac $tarname/*.java -Xlint:deprecation -d $tarname
+# jar -cvf TestJar.jar ./*.class
+jar -cvf $tarname/TestJar.jar $tarname/*.class
+# rm ./*.class
+rm $tarname/*.class
 # hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 
 # CREATE TAR / DELETE .java / DELETE jar
-tar -cvf $tarname.tar input output *.java answer.txt
-rm ./*.java
+# tar -cvf $tarname.tar input output *.java answer.txt
+tar -cvf $tarname/$tarname.tar $tarname/*
+# rm ./*.java
+rm $tarname/*.java
 # rm TestJar.jar
