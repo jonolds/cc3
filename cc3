@@ -25,7 +25,7 @@ javac $tarname/*.java -Xlint:deprecation -d $tarname
 # CREATE TAR / DELETE .java / DELETE jar
 # tar -cvf $tarname.tar input output *.java answer.txt
 cd $tarname
-jar -cvf $tarname/TestJar.jar *.class
+jar -cvf TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 # rm TestJar.jar *.class
