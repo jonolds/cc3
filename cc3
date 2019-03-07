@@ -5,26 +5,21 @@ mainclass="WordCount"
 # DELETE TAR and STAGING directory if present
 rm $tarname.tar
 mkdir STAGING
-# rm -R $tarname
-# COPY EVERYTHING TO TOP LEVEL
 
-
+# COPY EVERYTHING TO TOP STAGING
 cp src/main/java/*.java answer.txt -r input STAGING
+cd STAGING
 
 # TEST - compile / put in jar / delete .class / run
-
-
-
-# CREATE TAR / DELETE .java / DELETE jar
-# tar -cvf $tarname.tar input output *.java answer.txt
-cd STAGING
 javac *.java -Xlint:deprecation -d .
 jar -cvf TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
-# rm TestJar.jar *.class
+
+# CREATE TAR / DELETE .java / DELETE jar
 tar -cvf ../$tarname.tar *.java answer.txt input output
+
+# CLEAR STAGING
+rm -R *
 cd ..
-rm -R STAGING
-# rm $tarname/*.jarf
-# rm TestJar.jar
+
