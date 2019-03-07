@@ -24,7 +24,9 @@ rm $tarname/*.class
 
 # CREATE TAR / DELETE .java / DELETE jar
 # tar -cvf $tarname.tar input output *.java answer.txt
-tar -cvf $tarname.tar $tarname/*
+cd $tarname
+tar -cvf $tarname.tar ./*
+cd ..
 # rm ./*.java
-
+# rm $tarname/*.jarf
 # rm TestJar.jar
