@@ -26,5 +26,5 @@ rm $tarname/*.class
 # tar -cvf $tarname.tar input output *.java answer.txt
 tar -cvf $tarname.tar $tarname/*
 # rm ./*.java
-rm $tarname/*.java
+
 # rm TestJar.jar
