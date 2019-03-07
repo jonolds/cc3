@@ -13,7 +13,7 @@ jar -cvf WordCountReverse.jar ./*.class
 jar -cvf {$mainclass}.jar ./*.class
 rm ./*.class
 hadoop jar WordCountReverse.jar $mainclass input output
-cat ./output/part-r-00000
+# cat ./output/part-r-00000
 
 # CREATE TAR / DELETE .java / DELETE jar
 tar -cvf $tarname input output *.java answer.txt
