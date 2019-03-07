@@ -4,7 +4,6 @@ mainclass="WordCount"
 
 # DELETE TAR and STAGING directory if present
 rm $tarname.tar
-mkdir STAGING
 
 # COPY EVERYTHING TO TOP STAGING
 cp src/main/java/*.java answer.txt -r input STAGING
