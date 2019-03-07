@@ -9,7 +9,6 @@ mkdir STAGING
 # COPY EVERYTHING TO TOP LEVEL
 
 
-mkdir STAGING
 cp src/main/java/*.java answer.txt -r input STAGING
 
 # TEST - compile / put in jar / delete .class / run
