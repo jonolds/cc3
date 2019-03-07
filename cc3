@@ -2,11 +2,11 @@
 tarname="pa3_olds"
 mainclass="WordCount"
 
-# DELETE TAR and STAGING directory if present
+# DELETE TAR / CLEAR STAGING
 rm $tarname.tar
 rm -r STAGING/*
 
-# COPY EVERYTHING TO TOP STAGING
+# COPY EVERYTHING TO STAGING
 cp src/main/java/*.java answer.txt -r input STAGING
 cd STAGING
 
