@@ -10,7 +10,7 @@ cp src/main/java/*.java .
 # TEST - compile / put in jar / delete .class / run
 javac *.java -Xlint:deprecation -d ./
 jar -cvf WordCountReverse.jar ./*.class
-jar -cvf {$mainclass}.jar ./*.class
+jar -cvf $mainclass.jar ./*.class
 rm ./*.class
 hadoop jar WordCountReverse.jar $mainclass input output
 # cat ./output/part-r-00000
