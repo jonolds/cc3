@@ -3,7 +3,7 @@ tarname="pa3_olds"
 mainclass="WordCount"
 
 
-# rm $tarname.tar
+rm $tarname.tar
 # rm -R $tarname
 # COPY EVERYTHING TO TOP LEVEL
 
@@ -29,9 +29,8 @@ jar -cvf TestJar.jar *.class
 hadoop jar TestJar.jar $mainclass input output
 # cat ./output/part-r-00000
 # rm TestJar.jar *.class
-
 tar -cvf ../$tarname.tar *.java answer.txt input output
 cd ..
-# rm ./*.java
+rm -R $tarname
 # rm $tarname/*.jarf
 # rm TestJar.jar
