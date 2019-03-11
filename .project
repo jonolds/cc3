@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1551976538536</id>
+			<id>1552345000036</id>
 			<name></name>
 			<type>6</type>
 			<matcher>
@@ -60,11 +60,15 @@
 						<id>org.eclipse.ui.ide.multiFilter</id>
 						<arguments>1.0-name-matches-false-false-STAGING</arguments>
 					</matcher>
+					<matcher>
+						<id>org.eclipse.ui.ide.multiFilter</id>
+						<arguments>1.0-name-matches-false-false-a3</arguments>
+					</matcher>
 				</arguments>
 			</matcher>
 		</filter>
 		<filter>
-			<id>1551976538552</id>
+			<id>1552345000045</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
